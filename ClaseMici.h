@@ -1,0 +1,82 @@
+#ifndef CLASEMICI_H
+#define CLASEMICI_H
+
+#include<vector>
+#include "Donator.h"
+
+class Donn {
+    private:
+        std::shared_ptr<Donator> pointer;
+    
+    public:
+        Donn(std::shared_ptr<Donator> ptr = nullptr) : pointer(ptr) {}
+
+        void verificareConditiiDeces();
+
+        void verificareAtestareDeces();
+
+        std::vector<std::string>& getOrganeDisponibile();
+
+        Donn clone() const;
+
+        int verificareTipReal();
+
+        std::string getNumarMatricol();
+
+};
+
+class Pacient {
+    private:
+        const std::string NUME;
+        const std::string PRENUME;
+        const std::string CNP;
+        std::string organNecesar;
+
+    public:
+        Pacient(const std::string NUME, const std::string PRENUME, const std::string CNP, std::string organNecesar);
+
+        ~Pacient();
+
+        void verificarePosibilitateTransplant(std::vector <Donn> posibiliDonatori);
+
+        std::string getNume();
+
+};
+
+class Pacienti {
+    private: 
+        std::vector <Pacient> pacienti;
+    public:
+
+    std::vector<Pacient>& getPacienti();
+
+    void citestePacienti(const std::string& numeFisier);
+
+};
+
+class Medic {
+    private: 
+        const std::string NUME;
+        const std::string PRENUME;
+        std::string functie;
+
+    public:
+            Medic(const std::string& nume, const std::string& prenume, const std::string& functie);
+
+            Medic(const Medic& other);
+
+            Medic& operator=(const Medic& other);
+
+            std::string getNUME();
+
+            std::string getPRENUME();
+
+            std::string getFunctie();
+};
+
+
+
+
+
+
+#endif // CLASE_MICI_H

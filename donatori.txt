@@ -1,0 +1,148 @@
+Tamica
+Dora
+13-08-1990
+Tamica Marius
+2900813030045
+NM236478/25
+1
+Ivreanu
+Marisa
+Medic anestezie - terapie intensiva
+Baciuca
+Andrei
+Medic neurochirurg
+0
+1
+1
+2
+2
+1
+1
+1
+1
+
+Dudulea
+Maria-Antonia
+14-05-1984
+Petrescu Angela
+2840514369811
+NM337640/25
+2
+Ivreanu
+Marisa
+Medic anestezie - terapie intensiva
+Giurcanu
+Flavia-Camelia
+Medic pediatrie
+0
+0
+0
+0
+0
+0
+0
+0
+
+Lucenea
+Vasile
+08-09-1972
+Lucenea Ioana
+1720908142333
+NM346566/25
+3
+6
+0
+0
+1
+
+Antonescu
+Costin
+31-01-2000
+Antonescu Maria
+5000131410098
+NM389000/25
+3
+5
+0
+0
+0
+
+Gulas
+Svetlana
+24-01-2002
+Florescu Ion
+6020124330007
+NM677712/25
+2
+Rotariu
+Diana
+Medic anestezie - terapie intensiva
+Baciuca
+Andrei
+Medic neurochirurg
+0
+0
+0
+0
+0
+0
+0
+0
+
+Mitrescu
+Horia
+01-04-1998
+Mitrescu Roxana
+1980401252212
+NM088934/25
+1
+Rotariu
+Diana
+Medic anestezie - terapie intensiva
+Cristea
+Mircea
+Medic neurolog
+1
+1
+1
+1
+1
+2
+1
+1
+1
+
+Caia
+Julieta
+17-08-2003
+Caia Constantia
+6030817112304
+NM673433/25
+1
+Teodosiu
+Flavian
+Medic interne
+Blandiana
+Ana
+Medic neurochirurg
+1
+2
+1
+1
+1
+1
+1
+1
+1
+
+Baciu
+Laviniu-Andrei
+03-12-2001
+Baciu Petru
+5011203142002
+NM210198/25
+3
+8
+0
+0
+0

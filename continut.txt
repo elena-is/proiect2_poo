@@ -1,0 +1,9 @@
+Continut donatori.txt:
+//Donator Imposibil Testat Neurologic cu testare corecta
+//Verificare corecta, dar medic cu functie gresita - Testat Neurologic
+//Verificare gresita - debit Cardiac
+//Verificare corecta - debit Cardiac
+//Verificare corecta Testat Neurologic
+//Verificare corecta Imposibil Testat Neurologic
+//Verificare corecta, medic gresit - Imposibil Testat Neurologic
+//Verificare corecta - Testat Circulatoriu
