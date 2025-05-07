@@ -40,7 +40,7 @@ Descrierea indeplinirii cerintelor de cod:
 - clasa cu atribut de tip smart pointer: clasa Donn, pointer catre Donator;
 - exceptii: in Exceptii.h, class EroareCitire : public std::runtime_error, class DonatorNegasit : public std::exception, class DonatorMinor : public std::exception;
 - functii si atribute statice: static int contorNascutiDupa2000; in clasa Donator, static int getContorNascutiDupa2000(); functie;
-- STL: functii din <algorithm>, <memory>, <stdexcept>;
+- STL: functii din algorithm, memory, stdexcept;
 - const in fiecare clasa.
 
 
