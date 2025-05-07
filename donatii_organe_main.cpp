@@ -2,6 +2,7 @@
 //#include "ClaseMici.h"
 #include "utilitare.h"
 #include "Exceptii.h"
+#include "TestatCirculatoriu.h"
 #include <iostream>
 
 int main()
@@ -42,8 +43,25 @@ int main()
     {
         std::cout << i.getNume() << '\n';
     }
+
     
     std::cout << '\n';
     suferinzi.getPacienti()[1].verificarePosibilitateTransplant(donatori);
+
+    suferinzi.sortarePacienti();
+
+    try{
+        Donn donor = suferinzi.getPacientii()[0].verificarePosibilitateTransplantReturnare(donatori);
+
+    }
+    catch (const DonatorNegasit& e) {
+        std::cout << "Eroare: " << e.what() << std::endl;
+    }
+
+    try {
+    TestatCirculatoriu gh("Huida", "Alexandru", "14-05-2010", "Florea Ioana", "5100514130089", "MN569870", 5, 0, 0, 0);
+    } catch (const DonatorMinor& e) {
+    std::cout << "Eroare: " << e.what() << std::endl;
+    }
 
 }

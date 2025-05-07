@@ -2,6 +2,7 @@
 #include<vector>
 #include<iostream>
 #include<fstream>
+#include<algorithm>
 #include "Donator.h"
 #include "ImposibilTestatNeurologic.h"
 #include "TestatNeurologic.h"
@@ -17,6 +18,17 @@
         : NUME(NUME), PRENUME(PRENUME), DATA_NASTERII(DATA_NASTERII), apartinator(apartinator), CNP(CNP), numarMatricol(numarMatricol) {
             if( CNP[0] == '5' || CNP[0] == '6')
                 contorNascutiDupa2000++;
+
+            if (DATA_NASTERII.length() >= 2) {
+        char penultima = DATA_NASTERII[DATA_NASTERII.length() - 2];
+        char ultima = DATA_NASTERII[DATA_NASTERII.length() - 1];
+
+        if (penultima == '0' && ultima > '7') {
+            throw DonatorMinor();
+        }
+        else if (penultima == '1')
+            throw DonatorMinor();
+        }
         }
 
             Donator::Donator(const Donator& other)
@@ -513,4 +525,41 @@ std::vector<Donn> citireDonatori(const std::string& fisier) {
     std::string Donn::getNumarMatricol() {
         return pointer->getNumarMatricol();
     }
+
+
+    //sortare vector de indici ca nu putem sorta direct pentru ca avem membri const
+    void Pacienti::sortarePacienti() {
+        std::vector<size_t> indici(pacienti.size());
+        for (size_t i = 0; i < indici.size(); ++i)
+            indici[i] = i;
+
+        std::sort(indici.begin(), indici.end(), [this](size_t a, size_t b) {
+            return pacienti[a].getNume() < pacienti[b].getNume();
+        });
+
+        std::cout << "Lista pacienti sortati: \n";
+        for (size_t i : indici)
+        {
+            Pacient& p = pacienti[i];
+            std::cout << p.getNume() << '\n';
+        }
+    }
+
+       Donn Pacient::verificarePosibilitateTransplantReturnare(std::vector <Donn> posibiliDonatori) {
+            for(auto i : posibiliDonatori)
+            {
+                for(std::string& j : i.getOrganeDisponibile())
+                {
+                    if (j == organNecesar)
+                        return i;
+                }
+            }
+
+            throw DonatorNegasit();
+        }
+
+        std::vector <Pacient> Pacienti::getPacientii(){
+            return pacienti;
+        }
+
 

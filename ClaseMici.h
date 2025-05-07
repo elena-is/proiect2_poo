@@ -41,6 +41,8 @@ class Pacient {
 
         std::string getNume();
 
+        Donn verificarePosibilitateTransplantReturnare(std::vector <Donn> posibiliDonatori);
+
 };
 
 class Pacienti {
@@ -51,6 +53,10 @@ class Pacienti {
     std::vector<Pacient>& getPacienti();
 
     void citestePacienti(const std::string& numeFisier);
+
+    void sortarePacienti();
+
+    std::vector <Pacient> getPacientii();
 
 };
 
@@ -73,6 +79,8 @@ class Medic {
 
             std::string getFunctie();
 };
+
+
 
 
 

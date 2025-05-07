@@ -26,7 +26,7 @@ class Donator {
 
         virtual std::shared_ptr<Donator> clone() const = 0;
 
-          static int getContorNascutiDupa2000();
+        static int getContorNascutiDupa2000();
 
         //Avizam faptul ca testele de reflexe au iesit negative, iar in caz de imposibilitate, ca s-a efectuat testul aditional.
         virtual void verificareConditiiDeces() = 0;

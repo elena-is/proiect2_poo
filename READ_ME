@@ -23,6 +23,26 @@ In cadrul spitalului se mai gasesc si Pacienti ce necesita transplanturi de orga
 
 Datele pentru donatori sunt citite din fisierul “donatori.txt”, iar cele pentru pacienti din “pacienti.txt”. In fisierul “continut.txt” sunt explicate cazurile care sunt testate in donatori.txt.
 
+
+Descrierea indeplinirii cerintelor de cod:
+
+- clasa de baza si 3 clase derivate: clasa de baza Donator, cu derivatele TestatNeurologic,ImposibilTestatNeurologic si TestatCirculatoriu;
+- functii virtuale pure: virtual void verificareConditiiDeces() = 0;, functii virtuale: virtual void verificareAtestareDeces(); , apelate prin pointeri la clasa de baza atribut al clasei Donn;
+- constructori virtuali: virtual std::shared_ptr<Donator> clone() const = 0;
+- apelarea constructorului din clasa de baza in constructorii din derivate, exemplu:
+ ImposibilTestatNeurologic::ImposibilTestatNeurologic(
+        const std::string& NUME, const std::string& PRENUME, const std::string& DATA_NASTERII,
+        const std::string& apartinator, const std::string& CNP, const std::string& numarMatricol,
+        const std::string& numeMedicATI, const std::string& prenumeMedicATI, const std::string& functieMedicATI,
+        const std::string& numeMedic2, const std::string& prenumeMedic2, const std::string& functieMedic2, testAuxiliar test)
+        : Donator(NUME, PRENUME, DATA_NASTERII, apartinator, CNP, numarMatricol), ...;
+- clasa cu atribut de tip smart pointer: clasa Donn, pointer catre Donator;
+- exceptii: in Exceptii.h, class EroareCitire : public std::runtime_error, class DonatorNegasit : public std::exception, class DonatorMinor : public std::exception;
+- functii si atribute statice: static int contorNascutiDupa2000; in clasa Donator, static int getContorNascutiDupa2000(); functie;
+- STL: functii din <algorithm>, <memory>, <stdexcept>;
+- const in fiecare clasa.
+
+
 Bibliografie:
 https://www.coursera.org/learn/organ-donation/home/info
 https://www.w3schools.com/cpp/cpp_functions.asp
