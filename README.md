@@ -1,1 +1,50 @@
 # proiect2_poo
+
+
+Proiectul simuleaza activitatea unei sectii de Donatii de Organe.
+
+In cadrul sectiei sunt inregistrati mai multi donatori, anume persoane decedate pentru care s-a exprimat consimtamantul legal de donare a organelor. Consimtamantul este exprimat in scris de catre un apartinator, anume persoana cu gradul de rudenie cel mai apropiat de decedat (in Romania, ordinea este: sot/sotie, parinti, copii, bunici, etc).
+
+Decesul poate fi atestat din punct de vedere legal prin 3 metode: daca moartea a fost testificata prin modalitate cerebrala, se incearca realizarea testelor de reflexe. Daca toate pot fi realizate corect, atunci sunt suficiente pentru atestare, iar aici reprezinta categoria de donatori din Testat Neurologic. Daca insa anumite teste nu pot fi efectuate din diferite motive (exemplu, reflexul pupilar fotomotor nu poate fi verificat deoarece donatorul are ochii prea umflati, asa ca nu mai pot fi deschisi), este necesara si verificarea printr-un test auxiliar. Cele utilizate sunt RMN-ul si angiografia, metode prin care se verifica debitul de sange din creier (pentru a fi desemnat decesul, acesta trebuie sa fie zero, deoarece presiunea creste din cauza leziunilor cerebrale, iar sangele nu mai poate patrunde). Aceasta reprezinta categoria Imposibil Testat Neurologic, care include persoanele care se aflau deja in coma/stare vegetativa. Reflexele care alcatuiesc testul cerebral de consemnare a decesului sunt: reflex pupilar fotomotor, reflex cornean, reflex de voma, reflex de tuse, raspuns motor in aria nervilor cranieni, reflex oculo-cefalic, reflex oculo-vestibular, test apnee. 
+Cea de a treia metoda este reprezentata de testarea realizata pe cale circulatorie : Testat Circulatoriu. Acestea sunt persoanele care au decedat dupa un accident in drum spre spital / la scurt timp dupa ajungerea acolo. 
+
+Functia verificareConditiiDeces() se asigura ca decesele au fost verificate corespunzator pentru fiecare categorie.
+•	pentru Testat Neurologic – se verifica faptul ca toate cele 8 reflexe craniene testate erau ABSENTE (bool false);
+•	pentru Imposibil Testat Neurologic – se verifica faptul ca toate cele 8 reflexe craniene sunt sau ABSENTE, sau VERIFICARE_IMPOSIBILA. Daca exista vreunul cu verificare_imposibila, se cere efectuarea unuia dintre cele doua teste eligibile de mai sus;
+•	pentru Testat Circulatoriu – se asteapta minim 5 minute in care sa nu existe niciun fel de debit cardiac, apoi se testeaza 3 reflexe: reflex pupilar fotomotor, reflex cornean si reactie la presiune supraorbitala.
+
+In cazul primelor doua categorii, legislatia din Romania prevede anumite tipuri de medici care au voie sa ateste decesul pe cale cerebrala, anume neaparat 2 medici, dintre care:
+•	un medic anestezie-terapie intensiva (ATI);
+•	un medic anestezie-terapie intensiva/neurolog/neurochirug.
+Functia verificareAtestareDeces() se asigura de legalitatea testarii dpdv al persoanelor indreptatite.
+
+In cazul primelor doua categorii, toate organele pot fi folosite pentru transplant, insa la testarea circulatorie nu se poate refolosi inima, din cauza leziunilor ischemice.
+
+In cadrul spitalului se mai gasesc si Pacienti ce necesita transplanturi de organe. In cazul acestora, functia verificarePosibilitateTransplant() se asigura ca exista la momentul actual cel putin un donator de la care se detine organul necesar transplantului, care este identificat prin numarul matricol.
+
+Datele pentru donatori sunt citite din fisierul “donatori.txt”, iar cele pentru pacienti din “pacienti.txt”. In fisierul “continut.txt” sunt explicate cazurile care sunt testate in donatori.txt.
+
+
+Descrierea indeplinirii cerintelor de cod:
+
+- clasa de baza si 3 clase derivate: clasa de baza Donator, cu derivatele TestatNeurologic,ImposibilTestatNeurologic si TestatCirculatoriu;
+- functii virtuale pure: virtual void verificareConditiiDeces() = 0;, functii virtuale: virtual void verificareAtestareDeces(); , apelate prin pointeri la clasa de baza atribut al clasei Donn;
+- constructori virtuali: virtual std::shared_ptr<Donator> clone() const = 0;
+- apelarea constructorului din clasa de baza in constructorii din derivate, exemplu:
+ ImposibilTestatNeurologic::ImposibilTestatNeurologic(
+        const std::string& NUME, const std::string& PRENUME, const std::string& DATA_NASTERII,
+        const std::string& apartinator, const std::string& CNP, const std::string& numarMatricol,
+        const std::string& numeMedicATI, const std::string& prenumeMedicATI, const std::string& functieMedicATI,
+        const std::string& numeMedic2, const std::string& prenumeMedic2, const std::string& functieMedic2, testAuxiliar test)
+        : Donator(NUME, PRENUME, DATA_NASTERII, apartinator, CNP, numarMatricol), ...;
+- clasa cu atribut de tip smart pointer: clasa Donn, pointer catre Donator;
+- exceptii: in Exceptii.h, class EroareCitire : public std::runtime_error, class DonatorNegasit : public std::exception, class DonatorMinor : public std::exception;
+- functii si atribute statice: static int contorNascutiDupa2000; in clasa Donator, static int getContorNascutiDupa2000(); functie;
+- STL: functii din <algorithm>, <memory>, <stdexcept>;
+- const in fiecare clasa.
+
+
+Bibliografie:
+https://www.coursera.org/learn/organ-donation/home/info
+https://www.w3schools.com/cpp/cpp_functions.asp
+
