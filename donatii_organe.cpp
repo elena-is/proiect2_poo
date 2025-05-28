@@ -566,4 +566,43 @@ std::vector<Donn> citireDonatori(const std::string& fisier) {
         for (size_t i : indici)
         {
             Pacient& p = pacienti[i];
-            std::cou
+            std::cout << p.getNume() << '\n';
+        }
+    }
+
+       Donn Pacient::verificarePosibilitateTransplantReturnare(std::vector <Donn> posibiliDonatori) {
+            for(auto i : posibiliDonatori)
+            {
+                for(std::string& j : i.getOrganeDisponibile())
+                {
+                    if (j == organNecesar)
+                        return i;
+                }
+            }
+
+            throw DonatorNegasit();
+        }
+
+        std::vector <Pacient> Pacienti::getPacientii(){
+            return pacienti;
+        }
+
+    ManagerBazaDate& ManagerBazaDate::getInstanta() {
+            std::lock_guard<std::mutex> lock(mutexManager);
+            if (!Manager) {
+                 Manager = std::unique_ptr<ManagerBazaDate>(new ManagerBazaDate());
+            }
+            return *Manager;
+        }
+
+    void ManagerBazaDate::conectare() {
+            std::cout << "Conectat la baza de date: " << conexiune << std::endl;
+        }
+
+    void ManagerBazaDate::deconectare() {
+            std::cout << "Deconectat de la baza de date." << std::endl;
+        }
+
+    std::unique_ptr<ManagerBazaDate> ManagerBazaDate::Manager = nullptr;
+    std::mutex ManagerBazaDate::mutexManager;
+
