@@ -3,12 +3,15 @@
 #include<iostream>
 #include<fstream>
 #include<algorithm>
+#include "ManagerBazadeDate.h"
 #include "Donator.h"
 #include "ImposibilTestatNeurologic.h"
 #include "TestatNeurologic.h"
 #include "TestatCirculatoriu.h"
 #include "utilitare.h"
 #include "Exceptii.h"
+#include "Medic.h"
+
 //#include "ClaseMici.h"
 
     int Donator::contorNascutiDupa2000 = 0;
@@ -68,6 +71,13 @@
             return numarMatricol;
         }
 
+
+         std::ostream& operator<<(std::ostream& os, const Donn& d) {
+            return os<<"Numar matricol donator: " << d.getNumarMatricol();
+        }
+
+        
+        
         Medic::Medic(const std::string& nume, const std::string& prenume, const std::string& functie)
             : NUME(nume), PRENUME(prenume), functie(functie) {}
 
@@ -88,6 +98,21 @@
 
         std::string Medic::getFunctie() { return functie; }
 
+        void Medic::afiseazaMedic() const {
+            std::cout << "Medic: " << NUME << " " << PRENUME << ", Functie: " << functie << '\n';
+        }
+
+        MedicMemento Medic::creazaMemento() const {
+            return MedicMemento(functie);
+        }
+
+        void Medic::restaureazaMemento(const MedicMemento& m) {
+            functie = m.functieSalvata;
+        }
+
+        void Medic::setFunctie(std::string functieNoua) {
+            functie = functieNoua;
+        }
 
          Pacient::Pacient(const std::string NUME, const std::string PRENUME, const std::string CNP, std::string organNecesar)
         : NUME(NUME), PRENUME(PRENUME), CNP(CNP), organNecesar(organNecesar) {}
@@ -522,7 +547,7 @@ std::vector<Donn> citireDonatori(const std::string& fisier) {
         return NUME;
     }
 
-    std::string Donn::getNumarMatricol() {
+    std::string Donn::getNumarMatricol() const {
         return pointer->getNumarMatricol();
     }
 
@@ -541,25 +566,4 @@ std::vector<Donn> citireDonatori(const std::string& fisier) {
         for (size_t i : indici)
         {
             Pacient& p = pacienti[i];
-            std::cout << p.getNume() << '\n';
-        }
-    }
-
-       Donn Pacient::verificarePosibilitateTransplantReturnare(std::vector <Donn> posibiliDonatori) {
-            for(auto i : posibiliDonatori)
-            {
-                for(std::string& j : i.getOrganeDisponibile())
-                {
-                    if (j == organNecesar)
-                        return i;
-                }
-            }
-
-            throw DonatorNegasit();
-        }
-
-        std::vector <Pacient> Pacienti::getPacientii(){
-            return pacienti;
-        }
-
-
+            std::cou

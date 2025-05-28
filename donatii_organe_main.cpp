@@ -3,6 +3,7 @@
 #include "utilitare.h"
 #include "Exceptii.h"
 #include "TestatCirculatoriu.h"
+#include "ManagerBazadeDate.h"
 #include <iostream>
 
 int main()
@@ -21,6 +22,7 @@ int main()
     } catch (const EroareCitire& e) {
     std::cerr << e.what() << std::endl;
     }
+    afiseaza_vector(donatori);
 
     std::vector <Donn> fostiDonatori;
     for (int i = 0; i < donatori.size(); i++)
@@ -63,5 +65,22 @@ int main()
     } catch (const DonatorMinor& e) {
     std::cout << "Eroare: " << e.what() << std::endl;
     }
+
+    Medic m("Ionescu", "Maria", "Rezident");
+    MedicCaretaker caretaker;
+
+    m.afiseazaMedic();  
+
+    caretaker.salveazaFunctie(m); 
+
+    m.setFunctie("Primar");
+    m.afiseazaMedic();  
+
+    std::cout << "\n-- Restaureaza Functie --\n";
+    caretaker.restaureazaFunctie(m);
+    m.afiseazaMedic(); 
+
+    ManagerBazaDate& manager = ManagerBazaDate::getInstanta();
+    manager.conectare();
 
 }

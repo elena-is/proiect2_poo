@@ -2,7 +2,11 @@
 #define CLASEMICI_H
 
 #include<vector>
+#include<type_traits>
+#include<iostream>
+#include<stack>
 #include "Donator.h"
+#include "Medic.h"
 
 class Donn {
     private:
@@ -21,7 +25,9 @@ class Donn {
 
         int verificareTipReal();
 
-        std::string getNumarMatricol();
+        std::string getNumarMatricol() const;
+
+        friend std::ostream& operator<<(std::ostream& os, const Donn& d);
 
 };
 
@@ -60,7 +66,7 @@ class Pacienti {
 
 };
 
-class Medic {
+/* class Medic {
     private: 
         const std::string NUME;
         const std::string PRENUME;
@@ -78,12 +84,45 @@ class Medic {
             std::string getPRENUME();
 
             std::string getFunctie();
+
+            void setFunctie(std::string functieNoua);
+
+            void afiseazaMedic() const;
+
+        friend class MedicMemento;
+
+        MedicMemento creazaMemento() const;
+
+        void restaureazaMemento(const MedicMemento& m);
 };
+*/
 
 
+//template pentru afisare element care nu este pointer
+template <class T>
+typename std::enable_if<!std::is_pointer<T>::value, void>::type
+afiseaza_element(const T& element) {
+    std::cout << element << '\n';
+}
 
+//template pentru afisare element care este pointer
+template<class T>
+typename std::enable_if<std::is_pointer<T>::value, void>::type
+afiseaza_element(const T& element) {
+    if (element != nullptr) {
+        std::cout << *element << '\n';
+    } else {
+        std::cout << "Pointer null\n";
+    }
+}
 
-
+//functie care afiseaza vectorul
+template <class T>
+void afiseaza_vector(const std::vector<T>& vec) {
+    for (const auto& elem : vec) {
+        afiseaza_element(elem);
+    }
+}
 
 
 
