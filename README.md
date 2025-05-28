@@ -1,4 +1,4 @@
-# proiect2_poo
+# proiect2_poo + proiect3_poo
 
 
 Proiectul simuleaza activitatea unei sectii de Donatii de Organe.
@@ -47,4 +47,19 @@ Descrierea indeplinirii cerintelor de cod:
 Bibliografie:
 https://www.coursera.org/learn/organ-donation/home/info
 https://www.w3schools.com/cpp/cpp_functions.asp
+
+
+Modificari Proiect 3:
+- Fisierul ClaseMici.h contine o clasa template care include o functie ce itereaza prin elementele unui vector
+si le afiseaza, indiferent de tipul de date pe care lucreaza
+- De asemenea, sunt definite doua clase template de afisare a elementelor, care 
+verifica daca obictul este de tip pointer sau nu, permitand functiei afiseaza_vector
+sa aleaga varianta de afisare necesara tipului de date
+- Fisierul Medic.h contine definirea claselor necesare pentru crearea unui design pattern de tip Memento.
+- Memento este un pattern de design comportamental care permite salvarea și restaurarea stării interne a unui obiect 
+fără a expune detalii ale implementării sale. Practic, obiectul creează un memento (un „instantaneu” al stării sale), care poate fi stocat și folosit ulterior pentru a reveni la acea stare, facilitând funcționalități de tip undo/redo.
+- In acest caz, pentru fiecare obiect de tip Medic, se poate crea o stiva ce retine datele membre ce pot fi modificate dupa crearea obiectului. Astfel, daca detaliile s-au schimbat (aici, medicului i-a fost schimbata functia), datele vechi sunt pastrate si pot fi accesate daca se doreste revenirea la functia anterioara.
+- Fisierul ManagerBazadeDate.h contine detaliile implementarii unei clase ce foloseste un design pattern de tip Singleton,
+ce permite crearea unui singur obiect de un anumit tip. astfel, se garanteaza ca managerul bazei de date va fi unul singur,
+iar nimeni altcineva nu poate simula drepturile sale.
 
